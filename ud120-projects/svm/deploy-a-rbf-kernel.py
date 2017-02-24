@@ -19,25 +19,7 @@ from email_preprocess import preprocess
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 from sklearn.svm import SVC
-clf = SVC(kernel="linear")
-
-
-#### now your job is to fit the classifier
-#### using the training features/labels, and to
-#### make a set of predictions on the test data
-# to = time()
-# clf.fit(features_train,labels_train)
-# print "learn",round(time()-to,3),"s"
-# #### store your predictions in a list named pred
-# t1 = time()
-# pred = clf.predict(features_test)
-# print "predict",round(time()-t1,3),"s"
-
-
-# from sklearn.metrics import accuracy_score
-# acc = accuracy_score(pred, labels_test)
-# print acc
-
+clf = SVC(kernel="rbf")
 
 
 #########################################################
