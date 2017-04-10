@@ -52,7 +52,17 @@ poi  = "poi"
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
+max_salary = 0
+min_salary = float("inf")
 
+for key in data_dict:
+    if data_dict[key]["salary"] > 0 and data_dict[key]["salary"] != "NaN":
+        if  data_dict[key]["salary"] > max_salary:
+            max_salary = data_dict[key]["salary"]
+        if data_dict[key]["salary"] < min_salary:
+            min_salary = data_dict[key]["salary"]
+
+print min_salary, max_salary
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
@@ -80,13 +90,3 @@ try:
     Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
-
-
-from sklearn.preprocessing import MinMaxScaler
-
-scaler = MinMaxScaler()
-data3 = featureFormat(data_dict, [feature_1, feature_2])
-data3_scaled = scaler.fit_transform(data3)
-print scaler.transform([[200000.,1000000.]])
-
-Draw(pred, finance_features, poi, mark_poi=False, name="clusters_after_scaling.pdf", f1_name=feature_1, f2_name=feature_2)
